@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.StringProperty;
 import utils.ConnexionBD;
 
 /**
@@ -77,7 +78,7 @@ public class ServiceCommande {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
+    }
 
     public List<Commande> afficherCommandeConf() throws SQLException {
         List<Commande> commande = new ArrayList<>();
@@ -85,16 +86,32 @@ public class ServiceCommande {
         st = conx.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM `commande` WHERE `etat`=confirmée");
         while (rs.next()) {
-            int =rs.getInt(1);
+            int id =rs.getInt(1);
             String etat = rs.getString(2);
-            String date = rs.getString(3);
+            String date = rs.getDate(3).toString();
 
            
-            e = new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise, fk_id_fournisseur);
-            entrepot.add(e);
+            Commande c = new Commande(date, etat);
+            commande.add(c);
         }
-        return entrepot;
+        return commande;
+    }
+       public List<Commande> afficherCommandeEnAttente() throws SQLException {
+        List<Commande> commande = new ArrayList<>();
+        Statement st;
+        st = conx.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM `commande` WHERE `etat`='en_attente'");
+        while (rs.next()) {
+            int id =rs.getInt(1);
+            String etat = rs.getString(2);
+            String date = rs.getDate(3).toString();
+
+           
+            Commande c = new Commande(date, etat);
+            commande.add(c);
+        }
+        return commande;
     }
 }
 
-}
+

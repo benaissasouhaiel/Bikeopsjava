@@ -58,7 +58,7 @@ public class ServicePanier {
             
             while(rs.next())
             {
-                System.out.println("Panier {id:"+rs.getInt(1)+" ,Lineitems:"+rs.getInt(2)+" ,Total:"+rs.getInt(3)+"");
+                System.out.println("Panier {Lineitems:"+rs.getInt(2)+" ,Total:"+rs.getInt(3)+"");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicePanier.class.getName()).log(Level.SEVERE, null, ex);

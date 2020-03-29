@@ -5,6 +5,7 @@
  */
 package bikeops;
 
+import Services.ServicePanier;
 import utils.ConnexionBD;
 
 /**
@@ -18,7 +19,8 @@ public class BikeOps {
      */
     public static void main(String[] args) {
        ConnexionBD conx = ConnexionBD.getinstance();
-    
+        ServicePanier sp = new ServicePanier();
+        sp.afficherPanier();
   
     }
 }

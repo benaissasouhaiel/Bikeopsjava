@@ -14,21 +14,27 @@ import javafx.beans.property.StringProperty;
  */
 public class Commande {
 
-    private StringProperty date;
+    private String date;
     private int id;
     private String etat;
 
-    public Commande(StringProperty date, int id, String etat) {
+    public Commande(String date, int id, String etat) {
         this.date = date;
         this.id = id;
         this.etat = etat;
     }
 
-    public StringProperty getDate() {
+    public Commande(String date, String etat) {
+        this.date = date;
+        this.etat = etat;
+    }
+    
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(StringProperty date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
