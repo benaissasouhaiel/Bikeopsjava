@@ -5,6 +5,7 @@
  */
 package Entities;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -12,20 +13,48 @@ import java.util.Objects;
  * @author Souhaiel
  */
 public class User {
-    private int id ;
-    private String username ;
-    private String mail ;
-    private String mdp ;
 
-    public User(){}
+    private int id;
+    private String username;
+    private String mail;
+    private String mdp;
+    private String nom;
+    private String prenom;
+    private String address;
+    private Date date_naiss ;
 
-    public User(int id, String username, String mail, String mdp) {
+    public User(int id, String username, String mail, String mdp, String nom, String prenom, String address) {
         this.id = id;
         this.username = username;
         this.mail = mail;
         this.mdp = mdp;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.address = address;
     }
+
+    public Date getDate_naiss() {
+        return date_naiss;
+    }
+
+    public void setDate_naiss(Date date_naiss) {
+        this.date_naiss = date_naiss;
+    }
+
+    public User(int id, String username, String mail, String mdp, String nom, String prenom, String address, Date date_naiss) {
+        this.id = id;
+        this.username = username;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.address = address;
+        this.date_naiss = date_naiss;
+    }
+
     
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -59,13 +88,46 @@ public class User {
         this.mdp = mdp;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username=" + username + ", mail=" + mail + ", mdp=" + mdp + ", nom=" + nom + ", prenom=" + prenom + ", address=" + address + ", date_naissance=" + '}';
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + this.id;
-        hash = 43 * hash + Objects.hashCode(this.username);
-        hash = 43 * hash + Objects.hashCode(this.mail);
-        hash = 43 * hash + Objects.hashCode(this.mdp);
+        int hash = 5;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + Objects.hashCode(this.username);
+        hash = 41 * hash + Objects.hashCode(this.mail);
+        hash = 41 * hash + Objects.hashCode(this.mdp);
+        hash = 41 * hash + Objects.hashCode(this.nom);
+        hash = 41 * hash + Objects.hashCode(this.prenom);
+        hash = 41 * hash + Objects.hashCode(this.address);
+
         return hash;
     }
 
@@ -93,14 +155,17 @@ public class User {
         if (!Objects.equals(this.mdp, other.mdp)) {
             return false;
         }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", username=" + username + ", mail=" + mail + ", mdp=" + mdp + '}';
-    }
-    
-    
-    
 }

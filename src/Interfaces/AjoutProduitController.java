@@ -5,10 +5,13 @@
  */
 package Interfaces;
 
+import Entities.Categorie;
 import Entities.Produit;
+import Services.ServiceCategorie;
 import Services.ServiceProduit;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -30,6 +34,7 @@ import javafx.stage.Stage;
  */
 public class AjoutProduitController implements Initializable {
 
+    private List<Categorie> L ;
     @FXML
     private TextField tfid;
     @FXML
@@ -44,13 +49,20 @@ public class AjoutProduitController implements Initializable {
     private TextField tfdesc;
     @FXML
     private Button btnret;
+    @FXML
+    private ComboBox<String> comboidc;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ServiceCategorie sc = new ServiceCategorie();
+        L = sc.ListCategorie();
+        for ( Categorie c : L)
+        {
+            comboidc.getItems().add(c.getName()); 
+        }
     }
 
     @FXML
@@ -69,7 +81,7 @@ public class AjoutProduitController implements Initializable {
                 alert.showAndWait();
             }
 
-            Produit p = new Produit(id, qte, id, name, desc);
+            Produit p = new Produit(id, qte, id, name, desc,L.get(comboidc.getSelectionModel().getSelectedIndex()));
             ServiceProduit sp = new ServiceProduit();
             sp.addProduit(p);
 

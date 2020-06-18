@@ -17,17 +17,60 @@ public class Commande {
     private String date;
     private int id;
     private String etat;
+    private String typePaiment;
+    private int panier_id; 
+    private int livraison_id;
+    
 
-    public Commande(String date, int id, String etat) {
+    public Commande(int id,String date,  String etat,String typePaiment, int panier_id,int livraison_id) {
+           this.id = id;
         this.date = date;
-        this.id = id;
+    
         this.etat = etat;
+        this.typePaiment = typePaiment;
+        this.panier_id = panier_id;
+        this.livraison_id = livraison_id;
     }
 
     public Commande(String date, String etat) {
         this.date = date;
         this.etat = etat;
     }
+
+    public Commande(String date, String etat,String typePaiment,int panier_id,int livraison_id) {
+        this.date = date;
+        this.etat = etat;
+        this.typePaiment = typePaiment;
+        this.livraison_id = livraison_id;
+        this.panier_id = panier_id;
+
+    }
+
+    public int getPanier_id() {
+        return panier_id;
+    }
+
+    public void setPanier_id(int panier_id) {
+        this.panier_id = panier_id;
+    }
+
+    public int getLivraison_id() {
+        return livraison_id;
+    }
+
+    public void setLivraison_id(int livraison_id) {
+        this.livraison_id = livraison_id;
+    }
+    
+
+    public String getTypePaiment() {
+        return typePaiment;
+    }
+
+    public void setTypePaiment(String typePaiment) {
+        this.typePaiment = typePaiment;
+    }
+    
     
 
     public String getDate() {
@@ -56,39 +99,10 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "date=" + date + ", id=" + id + ", etat=" + etat + '}';
+        return "Commande{" + "date=" + date + ", id=" + id + ", etat=" + etat + ", typePaiment=" + typePaiment + ", panier_id=" + panier_id + ", livraison_id=" + livraison_id + '}';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Commande other = (Commande) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.etat, other.etat)) {
-            return false;
-        }
-        if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        return true;
-    }
-    
     
     
 

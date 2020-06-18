@@ -34,6 +34,10 @@ public class MenuController implements Initializable {
     private Button btnaffp;
     @FXML
     private Button btnaffc;
+    @FXML
+    private Button btnajoutu;
+    @FXML
+    private Button btnaffu;
 
     /**
      * Initializes the controller class.
@@ -92,6 +96,36 @@ public class MenuController implements Initializable {
     private void affc(ActionEvent event) {
         try {
                         Parent root = FXMLLoader.load(getClass().getResource("AfficherCategorie.fxml"));
+                        Stage stage = (Stage) btnaffc.getScene().getWindow();
+                        stage.close();
+                        Scene scene = new Scene(root);
+
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+    }
+
+    @FXML
+    private void ajoutu(ActionEvent event) {
+         try {
+                        Parent root = FXMLLoader.load(getClass().getResource("AjoutUser.fxml"));
+                        Stage stage = (Stage) btnaffc.getScene().getWindow();
+                        stage.close();
+                        Scene scene = new Scene(root);
+
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+    }
+
+    @FXML
+    private void affu(ActionEvent event) {
+         try {
+                        Parent root = FXMLLoader.load(getClass().getResource("AfficherUser.fxml"));
                         Stage stage = (Stage) btnaffc.getScene().getWindow();
                         stage.close();
                         Scene scene = new Scene(root);

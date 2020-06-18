@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="861.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bikeops.gui.PanierController">
+  <items>
+    <AnchorPane minHeight="400.0" minWidth="786.0" prefHeight="859.0" prefWidth="786.0">
+         <children>
+            <Text layoutX="12.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MY CART" wrappingWidth="251.73291015625">
+               <font>
+                  <Font name="Arial Bold" size="31.0" />
+               </font></Text>
+            <Button fx:id="btnId" layoutX="662.0" layoutY="375.0" mnemonicParsing="false" onAction="#ToPreCommande" prefHeight="31.0" prefWidth="124.0" text="CheckOut" textOverrun="CLIP" />
+            <Text layoutX="11.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COUPON" wrappingWidth="123.99998903274536">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="12.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your coupon code here :" wrappingWidth="251.7329066991806">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="coupon" layoutX="11.0" layoutY="334.0" />
+            <Button fx:id="btn1Id" layoutX="191.0" layoutY="334.0" mnemonicParsing="false" onAction="#applyCoupon" prefHeight="31.0" prefWidth="124.0" text="Apply Coupon" />
+            <TextField fx:id="total" editable="false" layoutX="666.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
+            <Text layoutX="469.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total à payer" wrappingWidth="116.99998903274536">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <TableView fx:id="table" layoutX="32.0" layoutY="67.0" prefHeight="171.0" prefWidth="782.0">
+              <columns>
+                <TableColumn fx:id="nomP" editable="false" prefWidth="268.0" text="Produit" />
+                <TableColumn fx:id="PrixU" editable="false" prefWidth="147.0" text="Prix Unitaire" />
+                  <TableColumn fx:id="quantiteP" prefWidth="79.0" text="Quantité" />
+                  <TableColumn fx:id="soustotal" editable="false" minWidth="0.0" prefWidth="86.0" text="Sous-Total" />
+              </columns>
+            </TableView>
+            <Text layoutX="469.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total aprés réduction" wrappingWidth="152.00000858306885">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="totalreduced" layoutX="662.0" layoutY="321.0" prefHeight="26.0" prefWidth="124.0" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>

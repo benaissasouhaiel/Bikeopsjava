@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bikeops.gui.CommandeController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="278.0" text="PRÉ-COMMANDE">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="btnCateId" layoutX="92.0" layoutY="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Par carte" />
+      <RadioButton fx:id="btnlivId" layoutX="92.0" layoutY="239.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0" text="A la livraison" />
+      <RadioButton fx:id="btnMagId" layoutX="376.0" layoutY="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" text="Retrait magasin" />
+      <RadioButton fx:id="btnDomId" layoutX="376.0" layoutY="239.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="159.0" text="Livraison domicile" />
+      <TextField editable="false" layoutX="80.0" layoutY="108.0" text="Type Paiment" />
+      <TextField editable="false" layoutX="376.0" layoutY="108.0" prefHeight="26.0" prefWidth="128.0" text="Type Livraison" />
+      <Button fx:id="btnId" layoutX="188.0" layoutY="318.0" mnemonicParsing="false" onAction="#confirmerCommande" prefHeight="40.0" prefWidth="224.0" text="Confirmer Commande" />
+   </children>
+</AnchorPane>

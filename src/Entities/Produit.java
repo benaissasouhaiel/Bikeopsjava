@@ -18,6 +18,7 @@ public class Produit {
     private int prix;
     private String name;
     private String desc;
+    private Categorie cat;
 
     /**
      *
@@ -33,7 +34,23 @@ public class Produit {
         this.desc = desc;
     }
 
-    
+    public Produit(int id, int qte, int prix, String name, String desc, Categorie cat) {
+        this.id = id;
+        this.qte = qte;
+        this.prix = prix;
+        this.name = name;
+        this.desc = desc;
+        this.cat = cat;
+    }
+
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public void setCat(Categorie cat) {
+        this.cat = cat;
+    }
+
 
     public int getId() {
         return id;

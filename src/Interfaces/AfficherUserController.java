@@ -6,7 +6,9 @@
 package Interfaces;
 
 import Entities.Produit;
+import Entities.User;
 import Services.ServiceProduit;
+import Services.ServiceUser;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +34,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -45,51 +46,63 @@ import org.controlsfx.control.Notifications;
  *
  * @author Souhaiel
  */
-public class AfficherProduitController implements Initializable {
+public class AfficherUserController implements Initializable {
 
     @FXML
-    private TableView<Produit> tablep;
+    private TextField rech;
     @FXML
-    private TextField tfrech;
+    private TableView<User> tableu;
+    @FXML
+    private TableColumn<User, Integer> idu;
+    @FXML
+    private TableColumn<User, String> nomu;
+    @FXML
+    private TableColumn<User, String> prenomu;
+    @FXML
+    private TableColumn<User, String> adresseu;
+    @FXML
+    private TableColumn<User, String> datenaissu;
+    @FXML
+    private TableColumn<User, String> usernameu;
+    @FXML
+    private TableColumn<User, String> mailu;
+    @FXML
+    private TableColumn<User, String> mdpu;
     @FXML
     private Button btnret;
     @FXML
     private Button btnsupp;
     @FXML
     private Button btnmod;
-    @FXML
-    private TableColumn<Produit, Integer> idp;
-    @FXML
-    private TableColumn<Produit, Integer> qtep;
-    @FXML
-    private TableColumn<Produit, Integer> prixp;
-    @FXML
-    private TableColumn<Produit, String> nomp;
-    @FXML
-    private TableColumn<Produit, String> descp;
 
-    private final ObservableList<Produit> datta = FXCollections.observableArrayList();
-    public static String idprecup;
-    public static String qteprecup;
-    public static Integer prixprecup;
-    public static String nomprecup;
-    public static String descprecup;
+    private final ObservableList<User> datta = FXCollections.observableArrayList();
+    public static String idurecup;
+    public static String prenomurecup;
+    public static String adresseurecup;
+    public static String nomurecup;
+    public static String datenaissurecup;
+    public static String usernameurecup;
+    public static String mailurecup;
+    public static String mdpurecup;
 
     private void settable() {
 
-        ServiceProduit sp = new ServiceProduit();
+        ServiceUser su = new ServiceUser();
 
-        ArrayList<Produit> p = (ArrayList<Produit>) sp.ListProduit();
-        ObservableList<Produit> obs = FXCollections.observableArrayList(p);
+        ArrayList<User> u = (ArrayList<User>) su.ListUser();
+        ObservableList<User> obs = FXCollections.observableArrayList(u);
 
-        idp.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nomp.setCellValueFactory(new PropertyValueFactory<Produit, String>("nom"));
-        prixp.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("Prix"));
-        qtep.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("qte"));
-        descp.setCellValueFactory(new PropertyValueFactory<Produit, String>("desc"));
+        idu.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nomu.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+        prenomu.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+        adresseu.setCellValueFactory(new PropertyValueFactory<User, String>("addresse"));
+        datenaissu.setCellValueFactory(new PropertyValueFactory<User, String>("date_naissance"));
+        usernameu.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        mailu.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        mdpu.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
 
-        datta.addAll(p);
-        tablep.setItems(obs);
+        datta.addAll(u);
+        tableu.setItems(obs);
     }
 
     /**
@@ -98,11 +111,10 @@ public class AfficherProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         settable();
-        FilteredList<Produit> filteredData = new FilteredList<>(datta, b -> true);
+        FilteredList<User> filteredData = new FilteredList<>(datta, b -> true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
-        tfrech.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(Produit -> {
+        rech.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(User -> {
                 // If filter text is empty, display all persons.
 
                 if (newValue == null || newValue.isEmpty()) {
@@ -112,28 +124,29 @@ public class AfficherProduitController implements Initializable {
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (Integer.toString(Produit.getId()).equals(lowerCaseFilter)) {
+                if (Integer.toString(User.getId()).equals(lowerCaseFilter)) {
                     return true;
-                } else if (Produit.getDesc().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (User.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches first name.
-                } else if (Produit.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name.
+                } else if (User.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (User.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;// Filter matches last name.
                 } else {
+
                     return false; // Does not match.
                 }
             });
         });
-
         // 3. Wrap the FilteredList in a SortedList. 
-        SortedList<Produit> sortedData = new SortedList<>(filteredData);
+        SortedList<User> sortedData = new SortedList<>(filteredData);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
         // 	  Otherwise, sorting the TableView would have no effect.
-        sortedData.comparatorProperty().bind(tablep.comparatorProperty());
+        sortedData.comparatorProperty().bind(tableu.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
-        tablep.setItems(sortedData);
-
+        tableu.setItems(sortedData);
     }
 
     @FXML
@@ -157,7 +170,7 @@ public class AfficherProduitController implements Initializable {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(250, 100));
         panel.setLayout(null);
-        JLabel label1 = new JLabel("Delete Produit");
+        JLabel label1 = new JLabel("Delete Utilisateur");
         label1.setVerticalAlignment(SwingConstants.BOTTOM);
         label1.setBounds(20, 20, 200, 30);
         label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,12 +184,12 @@ public class AfficherProduitController implements Initializable {
         int res = JOptionPane.showConfirmDialog(null, panel, "File",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, icon);
         if (res == 0) {
-            Produit p = tablep.getSelectionModel().getSelectedItem();
+            User u = tableu.getSelectionModel().getSelectedItem();
 
-            ServiceProduit sp = new ServiceProduit();
-            sp.supprimerProduit(p.getId());
-            System.out.println("Produit deleted");
-            Notifications.create().title("Supression").text("Produit supprimé").showConfirm();
+            ServiceUser su = new ServiceUser();
+            su.supprimerUser(u.getId());
+            System.out.println("Utilisateur deleted");
+            Notifications.create().title("Supression").text("Utilisateur supprimé").showConfirm();
         } else if (res == 1) {
             System.out.println("Pressed No");
 
@@ -186,25 +199,28 @@ public class AfficherProduitController implements Initializable {
     }
 
     @FXML
-    private void modifier(ActionEvent event) throws IOException {
+    private void modifier(ActionEvent event) {
         try {
-            Produit p = tablep.getSelectionModel().getSelectedItem();
+            User u = tableu.getSelectionModel().getSelectedItem();
 
-            AfficherProduitController.idprecup = "" + p.getId();
-            AfficherProduitController.qteprecup = "" + p.getQte();
-            AfficherProduitController.prixprecup = p.getPrix();
-            AfficherProduitController.nomprecup = p.getName();
-            AfficherProduitController.descprecup = p.getDesc();
+            AfficherUserController.idurecup = "" + u.getId();
+            AfficherUserController.prenomurecup =u.getPrenom();
+            AfficherUserController.adresseurecup =u.getAddress();
+            AfficherUserController.nomurecup =u.getNom();
+            AfficherUserController.datenaissurecup = "" + u.getDate_naiss();
+            AfficherUserController.usernameurecup =u.getUsername();
+            AfficherUserController.mailurecup =u.getMail();
+            AfficherUserController.mdpurecup =u.getMdp();
 
-            Parent root = FXMLLoader.load(getClass().getResource("DetailsProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("DetailsUser.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.hide();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AfficherProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AfficherUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
+

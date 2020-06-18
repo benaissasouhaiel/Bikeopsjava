@@ -3,15 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AfficherUserController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Entities/User.java</file>
             <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AfficherCategorieController.java</file>
-            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Entities/Produit.java</file>
             <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Services/ServiceProduit.java</file>
-            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AjoutCategorieController.java</file>
-            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Services/ServiceCategorie.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Services/ServiceUser.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/SignInController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/souhaiel.css</file>
             <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/bikeops/BikeOps.java</file>
-            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Entities/Categorie.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/UserAfficheController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AjoutProduitController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AfficherProduitController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/DetailsUserController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Entities/Produit.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/AjoutUserController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/MenuController.java</file>
+            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Utils/ConnexionBD.java</file>
             <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/BikeOpsI.java</file>
-            <file>file:/C:/Users/Souhaiel/Documents/GitHub/Bikeopsjava/src/Interfaces/DetailsCategorieController.java</file>
         </group>
     </open-files>
 </project-private>

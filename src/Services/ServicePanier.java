@@ -6,6 +6,8 @@
 package Services;
 
 import Entities.Panier;
+import Entities.PanierDetail;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,18 +34,16 @@ public class ServicePanier {
     public void ajouterPanier(Panier sc) throws SQLException
     {
         try{
-    PreparedStatement pt = conx.prepareStatement(" insert into Panier (id, lineItems, total)"
-        + " values (?, ?, ?, ?)");
-            //pt.setInt(1,t.getId_Tache());
-            pt.setInt(1,sc.getId());
-            pt.setInt(2,sc.getLineitems());
-            pt.setInt(3,sc.getTotal());
+    PreparedStatement pt = conx.prepareStatement(" insert into Panier ( total,utilisateur_id) values ( ?, ?)");
+            
+            pt.setInt(1,sc.getTotal());
+            pt.setInt(2,sc.getUser_id());
                        
             
             pt.execute();
         }catch (SQLException ex)
             {
-            Logger.getLogger(ServicePanier.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
         }
     }
     
@@ -65,13 +65,13 @@ public class ServicePanier {
         }
     }
     
-       public void modifierPanier (int Id, int LineItems,int total)
+       public void modifierPanier (int Id, int total)
     {
         try {
-            PreparedStatement pt= conx.prepareStatement("update Pnaier set  total=?, Id=?, LineItems=?  where Id_Panier=?");
-            pt.setInt(1,Id);
-            pt.setInt(2,LineItems);
-            pt.setInt(3,total);
+            PreparedStatement pt= conx.prepareStatement("update Pnaier set  total=?, where Id_Panier=?");
+       
+            pt.setInt(1,total);
+            pt.setInt(2,Id);
             
             pt.execute();
         } catch (SQLException ex) {
@@ -95,29 +95,57 @@ public class ServicePanier {
     
     
     
-      public List<Panier> displayAll() {
-      // L'id du freelancer dans la requette est statique il faut le changer (session) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ArrayList <Panier> tab = new ArrayList ();     
-        
-    
+      public List<PanierDetail> displayAll(int user_id) {
+        ArrayList <PanierDetail> tab = new ArrayList ();     
+         
          try {
-             PreparedStatement pt =conx.prepareStatement("select id, LineItems from Panier");
-               ResultSet res= pt.executeQuery();
+             PreparedStatement pt =conx.prepareStatement(" SELECT p.name, p.prix, pc.quantite, pa.total from produit p INNER join "
+                     + "commande_produit pc INNER join panier pa "
+                     + "INNER join commande c where pc.produit_id = p.id and pc.commande_id= c.id and c.panier_id = pa.id and ? = pa.utilisateur_id ");
+              pt.setInt(1,user_id);  
+             ResultSet res= pt.executeQuery();
              while(res.next())
-                 
+                
              {
-               Panier s = new Panier(res.getInt(1),res.getInt(2));
-                 tab.add(s);
-                 
+               PanierDetail s = new PanierDetail(res.getString(1),res.getInt(2),res.getInt(3),res.getInt(4));
+             
+               tab.add(s);
+                 System.out.println("");
              }
          } catch (SQLException ex) {
              Logger.getLogger(ServicePanier.class.getName()).log(Level.SEVERE, null, ex);
          }
-        
+        tab.forEach(e->{System.out.println(e);});
        return tab;
      // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+      public int panierTotal (int prix , int quantite) {
+         
+        int s =prix*quantite;
+         
+         return s;
+      }
+      
+      public Panier getPanierByUser (int id) {
+        Panier panier = new Panier();
+        try {
+            String requete = "select * from panier where ? = utilisateur_id";
+            PreparedStatement pst = conx.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                panier.setId(rs.getInt("id"));
+                panier.setTotal(rs.getInt("total"));
+                panier.setUser_id(id);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    return panier;
+    }
     
-    
+      
 }
+   

@@ -7,25 +7,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="bodybg" stylesheets="@souhaiel.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Interfaces.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="bodybg" stylesheets="@souhaiel.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.MenuController">
    <children>
-      <Button fx:id="btnajoutp" layoutX="220.0" layoutY="122.0" mnemonicParsing="false" onAction="#ajout" text="Ajouter Produit">
+      <Button fx:id="btnajoutp" layoutX="227.0" layoutY="95.0" mnemonicParsing="false" onAction="#ajout" text="Ajouter Produit">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnajoutc" layoutX="211.0" layoutY="216.0" mnemonicParsing="false" onAction="#ajoutc" text="Ajouter Categorie">
+      <Button fx:id="btnajoutc" layoutX="218.0" layoutY="192.0" mnemonicParsing="false" onAction="#ajoutc" text="Ajouter Categorie">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnaffp" layoutX="215.0" layoutY="170.0" mnemonicParsing="false" onAction="#affp" text="Afficher Produits">
+      <Button fx:id="btnaffp" layoutX="222.0" layoutY="144.0" mnemonicParsing="false" onAction="#affp" text="Afficher Produits">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnaffc" layoutX="206.0" layoutY="269.0" mnemonicParsing="false" onAction="#affc" text="Afficher Categories">
+      <Button fx:id="btnaffc" layoutX="213.0" layoutY="243.0" mnemonicParsing="false" onAction="#affc" prefHeight="15.0" prefWidth="175.0" text="Afficher Categories">
          <font>
             <Font size="18.0" />
          </font>
@@ -35,5 +34,15 @@
             <Font name="System Bold Italic" size="48.0" />
          </font>
       </Label>
+      <Button fx:id="btnajoutu" layoutX="216.0" layoutY="292.0" mnemonicParsing="false" onAction="#ajoutu" text="Ajouter Utilisateur">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnaffu" layoutX="211.0" layoutY="337.0" mnemonicParsing="false" onAction="#affu" text="Afficher Utilisateurs">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

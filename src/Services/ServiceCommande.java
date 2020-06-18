@@ -7,6 +7,7 @@ package Services;
 
 import Entities.Commande;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,15 +27,22 @@ public class ServiceCommande {
 
     Connection conx = ConnexionBD.getinstance().getcnx();
 
-    public void ajouterOrder(Commande c) {
+    public void ajouterCommande(Commande c) {
         Statement st;
         try {
-            st = conx.createStatement();
-            String req = " INSERT INTO `commande`( `id`,`etat`, `Date`) VALUES(" + c.getId() + ",'" + c.getEtat() + "','" + c.getDate() + "')";
-            st.executeUpdate(req);
+            String req = " INSERT INTO `commande`( `date`, `etat`,`typePaiment`,`panier_id`,`livraison_id`) VALUES(?,?,?,?,?)";
+            PreparedStatement pst = conx.prepareStatement(req);
+          // pst.setInt(1 ,c.getId());
+
+            pst.setDate(1, Date.valueOf(c.getDate()));
+            pst.setString(2, c.getEtat());
+           pst.setString(3, c.getTypePaiment());
+           pst.setInt(4, c.getPanier_id());
+           pst.setInt(5,c.getLivraison_id());
+
+            pst.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println(ex);        }
 
     }
 
@@ -45,7 +53,7 @@ public class ServiceCommande {
             pt = conx.prepareStatement("SELECT * FROM `Commande`");
             ResultSet rs = pt.executeQuery();
             while (rs.next()) {
-                System.out.println("commande [id :" + rs.getInt(1) + ",etat:" + rs.getString(2) + ",Date:" + rs.getString(3) + "");
+                System.out.println("commande [id :" + rs.getInt(1) + ",etat:" + rs.getString(2) + ",Date:" + rs.getString(3) + ",TypePaiment:" + rs.getString(4) );
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,13 +61,15 @@ public class ServiceCommande {
 
     }
 
-    public void modifierOrder(String etat, String Date, int id) {
+    public void modifierCommande(String etat, String Date,String TypePaiment,  int id) {
         try {
-            PreparedStatement pt = conx.prepareStatement("UPDATE `commande` SET `etat`=? ,`date`=? where Id=?");
+            PreparedStatement pt = conx.prepareStatement("UPDATE `commande` SET `etat`=? ,`date`=? ,`TypePaiment`=? where Id=?");
 
             pt.setString(1, etat);
             pt.setString(2, Date);
-            pt.setInt(3, id);
+            pt.setString(3, TypePaiment);
+            pt.setInt(4, id);
+           
 
             pt.executeUpdate();
         } catch (SQLException ex) {
@@ -68,7 +78,7 @@ public class ServiceCommande {
 
     }
 
-    public void supprimerOrder(int id) {
+    public void supprimerCommande(int id) {
         PreparedStatement pt;
         try {
             pt = conx.prepareStatement("DELETE FROM `commande` WHERE Id=? ");
@@ -88,7 +98,8 @@ public class ServiceCommande {
         while (rs.next()) {
             int id =rs.getInt(1);
             String etat = rs.getString(2);
-            String date = rs.getDate(3).toString();
+            String date = rs.getString(3);
+            String TypePaiment = rs.getString(4);
 
            
             Commande c = new Commande(date, etat);
@@ -104,8 +115,8 @@ public class ServiceCommande {
         while (rs.next()) {
             int id =rs.getInt(1);
             String etat = rs.getString(2);
-            String date = rs.getDate(3).toString();
-
+            String date = rs.getString(3);
+            String TypePaiment = rs.getString(4);
            
             Commande c = new Commande(date, etat);
             commande.add(c);

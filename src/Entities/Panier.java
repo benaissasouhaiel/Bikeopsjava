@@ -12,34 +12,41 @@ package Entities;
 public class Panier {
     
     private int id;
-    private int lineitems;
+   
     private int total;
+    private int user_id;
+    
+    public Panier () {
+        
+    }
 
-    public Panier(int id, int lineitems, int total) {
+    public Panier(int id, int total,int user_id) {
         this.id = id;
-        this.lineitems = lineitems;
         this.total = total;
+        this.user_id = user_id;
     }
 
-    public Panier(int id, int lineitems) {
-       this.id= id;
-       this.lineitems= lineitems;
+    public Panier(int total, int user_id) {
+        this.total = total;
+        this.user_id = user_id;
+    }
+    
+
+    public int getUser_id() {
+        return user_id;
     }
 
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+   
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getLineitems() {
-        return lineitems;
-    }
-
-    public void setLineitems(int lineitems) {
-        this.lineitems = lineitems;
     }
 
     public int getTotal() {
@@ -52,38 +59,18 @@ public class Panier {
 
     @Override
     public String toString() {
-        return "Panier{" + "id=" + id + ", lineitems=" + lineitems + ", total=" + total + '}';
+        return "Panier{" + "id=" + id + ", total=" + total + ", user_id=" + user_id + '}';
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 7;
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Panier other = (Panier) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (this.lineitems != other.lineitems) {
-            return false;
-        }
-        if (this.total != other.total) {
-            return false;
-        }
-        return true;
-    }
+    
+    
     
     
     

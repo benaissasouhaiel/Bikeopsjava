@@ -146,7 +146,7 @@ public class AfficherCategorieController implements Initializable {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(250, 100));
         panel.setLayout(null);
-        JLabel label1 = new JLabel("Delete Produit");
+        JLabel label1 = new JLabel("Delete Categorie");
         label1.setVerticalAlignment(SwingConstants.BOTTOM);
         label1.setBounds(20, 20, 200, 30);
         label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -163,7 +163,7 @@ public class AfficherCategorieController implements Initializable {
             Categorie c = tablec.getSelectionModel().getSelectedItem();
 
             ServiceCategorie sc = new ServiceCategorie();
-            sc.supprimerCategorie(res);
+            sc.supprimerCategorie(c.getId());
             System.out.println("Categorie deleted");
             Notifications.create().title("Supression").text("Categorie supprimé").showConfirm();
         } else if (res == 1) {
